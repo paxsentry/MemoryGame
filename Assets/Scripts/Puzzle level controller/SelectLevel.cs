@@ -30,7 +30,6 @@ public class SelectLevel : MonoBehaviour
    public void SetSelectPuzzle(string selectedPuzzle)
    {
       _selectedPuzzle = selectedPuzzle;
-      Debug.Log("Selected puzzle: " + _selectedPuzzle);
    }
 
    IEnumerator ShowPuzzleSelectMenu()
