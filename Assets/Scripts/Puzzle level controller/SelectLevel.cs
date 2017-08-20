@@ -10,11 +10,27 @@ public class SelectLevel : MonoBehaviour
    [SerializeField]
    private Animator selectPuzzleAnim, puzzleLevelAnim;
 
-   private string selectedPuzzle;
+   [SerializeField]
+   private LoadPuzzleGame loadPuzzleGame;
+
+   private string _selectedPuzzle;
 
    public void BackToPuzzleSelectMenu()
    {
       StartCoroutine(ShowPuzzleSelectMenu());
+   }
+
+   public void SelectPuzzleLevel()
+   {
+      int level = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+
+      loadPuzzleGame.LoadPuzzle(level, _selectedPuzzle);
+   }
+
+   public void SetSelectPuzzle(string selectedPuzzle)
+   {
+      _selectedPuzzle = selectedPuzzle;
+      Debug.Log("Selected puzzle: " + _selectedPuzzle);
    }
 
    IEnumerator ShowPuzzleSelectMenu()
