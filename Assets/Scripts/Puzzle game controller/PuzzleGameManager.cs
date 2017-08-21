@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,26 @@ public class PuzzleGameManager : MonoBehaviour
 
    public void PickAPuzzle()
    {
-      Debug.Log("Selected button is " + UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+      int index = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+
+      StartCoroutine(TurnPuzzleButtonUp(
+         _puzzleButtonAnimators[index],
+         _puzzleButtons[index],
+         _gamePuzzles[index] ));
+   }
+
+   IEnumerator TurnPuzzleButtonUp(Animator anim, Button btn, Sprite puzzle)
+   {
+      anim.Play("TurnUp");
+      yield return new WaitForSeconds(.4f);
+      btn.image.sprite = puzzle;
+   }
+
+   IEnumerator TurnPuzzleButtonDown(Animator anim, Button btn, Sprite puzzle)
+   {
+      anim.Play("TurnBack");
+      yield return new WaitForSeconds(.4f);
+      btn.image.sprite = puzzle;
    }
 
    void AddListener()
