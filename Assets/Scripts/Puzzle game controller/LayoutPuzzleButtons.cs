@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class LayoutPuzzleButtons : MonoBehaviour
 {
    [SerializeField]
+   private SetupPuzzleGame setupPuzzleGame;
+
+   [SerializeField]
    private Transform puzzleLevel01, puzzleLevel02, puzzleLevel03, puzzleLevel04, puzzleLevel05;
 
    public List<Button> level01Buttons, level02Buttons, level03Buttons, level04Buttons, level05Buttons;
@@ -22,6 +25,8 @@ public class LayoutPuzzleButtons : MonoBehaviour
    {
       _puzzleLevel = level;
       _selectedPuzzle = puzzle;
+
+      setupPuzzleGame.SetLevelAndPuzzle(_puzzleLevel, _selectedPuzzle);
 
       LayoutPuzzle();
    }
@@ -41,6 +46,8 @@ public class LayoutPuzzleButtons : MonoBehaviour
                   SetBackgroundImage(btn);
                }
             }
+
+            setupPuzzleGame.SetPuzzleButtonsAndAnimators(level01Buttons, level01Anims);
             break;
 
          case 1:
@@ -54,6 +61,7 @@ public class LayoutPuzzleButtons : MonoBehaviour
                   SetBackgroundImage(btn);
                }
             }
+            setupPuzzleGame.SetPuzzleButtonsAndAnimators(level02Buttons, level02Anims);
             break;
 
          case 2:
@@ -67,6 +75,7 @@ public class LayoutPuzzleButtons : MonoBehaviour
                   SetBackgroundImage(btn);
                }
             }
+            setupPuzzleGame.SetPuzzleButtonsAndAnimators(level03Buttons, level03Anims);
             break;
 
          case 3:
@@ -80,6 +89,7 @@ public class LayoutPuzzleButtons : MonoBehaviour
                   SetBackgroundImage(btn);
                }
             }
+            setupPuzzleGame.SetPuzzleButtonsAndAnimators(level04Buttons, level04Anims);
             break;
 
          case 4:
@@ -93,6 +103,7 @@ public class LayoutPuzzleButtons : MonoBehaviour
                   SetBackgroundImage(btn);
                }
             }
+            setupPuzzleGame.SetPuzzleButtonsAndAnimators(level05Buttons, level05Anims);
             break;
 
          default:

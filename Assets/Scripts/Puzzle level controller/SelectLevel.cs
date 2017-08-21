@@ -1,9 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectLevel : MonoBehaviour
 {
+   [SerializeField]
+   private PuzzleGameManager puzzleGameManager;
+
    [SerializeField]
    private GameObject selectPuzzlePanel, puzzleLevelPanel;
 
@@ -23,6 +25,8 @@ public class SelectLevel : MonoBehaviour
    public void SelectPuzzleLevel()
    {
       int level = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+
+      puzzleGameManager.SetLevel(level);
 
       loadPuzzleGame.LoadPuzzle(level, _selectedPuzzle);
    }
