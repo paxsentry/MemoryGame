@@ -7,6 +7,9 @@ public class CreatePuzzleButtonsAndAnimators : MonoBehaviour
    [SerializeField]
    private Button puzzleButton;
 
+   [SerializeField]
+   private LayoutPuzzleButtons layoutPuzzleButtons;
+
    private int puzzleGame01 = 6;
    private int puzzleGame02 = 12;
    private int puzzleGame03 = 18;
@@ -33,7 +36,7 @@ public class CreatePuzzleButtonsAndAnimators : MonoBehaviour
 
    void Start()
    {
-
+      AssignButtonsAndAnims();
    }
 
    void CreateButtons()
@@ -110,5 +113,20 @@ public class CreatePuzzleButtonsAndAnimators : MonoBehaviour
          _level05Anims.Add(_level05Buttons[i].gameObject.GetComponent<Animator>());
          _level05Buttons[i].gameObject.SetActive(false);
       }
+   }
+
+   void AssignButtonsAndAnims()
+   {
+      layoutPuzzleButtons.level01Buttons = _level01Buttons;
+      layoutPuzzleButtons.level02Buttons = _level02Buttons;
+      layoutPuzzleButtons.level03Buttons = _level03Buttons;
+      layoutPuzzleButtons.level04Buttons = _level04Buttons;
+      layoutPuzzleButtons.level05Buttons = _level05Buttons;
+
+      layoutPuzzleButtons.level01Anims = _level01Anims;
+      layoutPuzzleButtons.level02Anims = _level02Anims;
+      layoutPuzzleButtons.level03Anims = _level03Anims;
+      layoutPuzzleButtons.level04Anims = _level04Anims;
+      layoutPuzzleButtons.level05Anims = _level05Anims;
    }
 }
