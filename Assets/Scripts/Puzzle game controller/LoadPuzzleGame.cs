@@ -1,8 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LoadPuzzleGame : MonoBehaviour
 {
+   [SerializeField]
+   private PuzzleGameManager puzzleGameManager;
+
    [SerializeField]
    private LayoutPuzzleButtons layoutPuzzleButtons;
 
@@ -21,6 +25,8 @@ public class LoadPuzzleGame : MonoBehaviour
    private int _puzzleLevel;
 
    private string _selectedPuzzle;
+
+   private List<Animator> anims;
 
    public void LoadPuzzle(int level, string puzzle)
    {
@@ -51,6 +57,8 @@ public class LoadPuzzleGame : MonoBehaviour
 
    public void BackToPuzzleLevelSelection()
    {
+      anims = puzzleGameManager.ResetGameplay();
+
       switch (_puzzleLevel)
       {
          case 0:
@@ -77,6 +85,14 @@ public class LoadPuzzleGame : MonoBehaviour
       puzzleLevelSelectAnim.Play("LevelSelectorSlideIn");
       puzzleGameAnim.Play("SlideOut");
       yield return new WaitForSeconds(1f);
+
+      foreach (Animator anim in anims)
+      {
+         anim.Play("Idle");
+      }
+
+      yield return new WaitForSeconds(.5f);
+
       puzzleGamePanel.SetActive(false);
    }
 

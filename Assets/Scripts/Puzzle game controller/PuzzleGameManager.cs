@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class PuzzleGameManager : MonoBehaviour
 {
    [SerializeField]
+   private GameFinished gameFinished;
+
+   [SerializeField]
    private List<Sprite> _gamePuzzles = new List<Sprite>();
 
    private List<Button> _puzzleButtons = new List<Button>();
@@ -34,8 +37,6 @@ public class PuzzleGameManager : MonoBehaviour
          firstGuessPuzzle = _gamePuzzles[firstGuessIndex].name;
 
          StartCoroutine(TurnPuzzleButtonUp(_puzzleButtonAnimators[firstGuessIndex], _puzzleButtons[firstGuessIndex], _gamePuzzles[firstGuessIndex]));
-
-         CheckGameCompleted();
       }
       else if (!secondGuess)
       {
@@ -59,7 +60,7 @@ public class PuzzleGameManager : MonoBehaviour
          _puzzleButtonAnimators[firstGuessIndex].Play("FadeOut");
          _puzzleButtonAnimators[secondGuessIndex].Play("FadeOut");
 
-         // increment score
+         CheckGameCompleted();
       }
       else
       {
@@ -92,8 +93,53 @@ public class PuzzleGameManager : MonoBehaviour
 
       if (_countCorrectGuesses == _gameGuesses)
       {
-         Debug.Log("No more puzzles");
+         CheckHowManyGuesses();
       }
+   }
+
+   void CheckHowManyGuesses()
+   {
+      int howManyGuesses = 0;
+
+      switch (_level)
+      {
+         case 0:
+            howManyGuesses = 5;
+            break;
+
+         case 1:
+            howManyGuesses = 10;
+            break;
+
+         case 2:
+            howManyGuesses = 15;
+            break;
+
+         case 3:
+            howManyGuesses = 20;
+            break;
+
+         case 4:
+            howManyGuesses = 25;
+            break;
+
+         default:
+            break;
+      }
+
+      if (_countGuesses < howManyGuesses)
+      {
+         gameFinished.ShowGameFinishedPanel(3);
+      }
+      else if (_countGuesses < (howManyGuesses + 5))
+      {
+         gameFinished.ShowGameFinishedPanel(2);
+      }
+      else 
+      {
+         gameFinished.ShowGameFinishedPanel(1);
+      }
+
    }
 
    void AddListener()
@@ -130,5 +176,15 @@ public class PuzzleGameManager : MonoBehaviour
    public void SetSelectedPuzzle(string selectedPuzzle)
    {
       _selectedPuzzle = selectedPuzzle;
+   }
+
+   public List<Animator> ResetGameplay()
+   {
+      firstGuess = secondGuess = false;
+      _countCorrectGuesses = _countGuesses = 0;
+
+      gameFinished.HideGameFinishedPanel();
+
+      return _puzzleButtonAnimators;
    }
 }
