@@ -21,6 +21,10 @@ public class PuzzleGameManager : MonoBehaviour
    private int firstGuessIndex, secondGuessIndex;
    private string firstGuessPuzzle, secondGuessPuzzle;
 
+   private int _countGuesses;
+   private int _countCorrectGuesses;
+   private int _gameGuesses;
+
    public void PickAPuzzle()
    {
       if (!firstGuess)
@@ -30,6 +34,8 @@ public class PuzzleGameManager : MonoBehaviour
          firstGuessPuzzle = _gamePuzzles[firstGuessIndex].name;
 
          StartCoroutine(TurnPuzzleButtonUp(_puzzleButtonAnimators[firstGuessIndex], _puzzleButtons[firstGuessIndex], _gamePuzzles[firstGuessIndex]));
+
+         CheckGameCompleted();
       }
       else if (!secondGuess)
       {
@@ -38,8 +44,9 @@ public class PuzzleGameManager : MonoBehaviour
          secondGuessPuzzle = _gamePuzzles[secondGuessIndex].name;
 
          StartCoroutine(TurnPuzzleButtonUp(_puzzleButtonAnimators[secondGuessIndex], _puzzleButtons[secondGuessIndex], _gamePuzzles[secondGuessIndex]));
-
          StartCoroutine(CheckPuzzleMatch(_puzzleBackgroundImage));
+
+         _countGuesses++;
       }
    }
 
@@ -79,6 +86,16 @@ public class PuzzleGameManager : MonoBehaviour
       btn.image.sprite = puzzle;
    }
 
+   void CheckGameCompleted()
+   {
+      _countCorrectGuesses++;
+
+      if (_countCorrectGuesses == _gameGuesses)
+      {
+         Debug.Log("No more puzzles");
+      }
+   }
+
    void AddListener()
    {
       foreach (Button btn in _puzzleButtons)
@@ -92,6 +109,8 @@ public class PuzzleGameManager : MonoBehaviour
    {
       _puzzleButtons = buttons;
       _puzzleButtonAnimators = animators;
+
+      _gameGuesses = _puzzleButtons.Count / 2;
 
       _puzzleBackgroundImage = _puzzleButtons[0].image.sprite;
 
