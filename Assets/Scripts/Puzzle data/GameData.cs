@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 [Serializable]
-public class NewBehaviourScript : MonoBehaviour
+public class GameData : MonoBehaviour
 {
    private bool[] _candyPuzzleLevels;
    private bool[] _transportPuzzleLevels;
