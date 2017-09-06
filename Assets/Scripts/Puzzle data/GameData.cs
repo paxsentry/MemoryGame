@@ -30,7 +30,7 @@ public class GameData : MonoBehaviour
    public void SetCandyPuzzleLevelStars(int[] stars) { _candyPuzzleLevelStars = stars; }
    public int[] GetCandyPuzzleLevelStars() { return _candyPuzzleLevelStars; }
 
-   public void SetTransportLevelStars(int[] stars) { _transportPuzzleLevelStars = stars; }
+   public void SetTransportPuzzleLevelStars(int[] stars) { _transportPuzzleLevelStars = stars; }
    public int[] GetTransportPuzzleLevelStars() { return _transportPuzzleLevelStars; }
 
    public void SetFruitPuzzleLevelStars(int[] stars) { _fruitPuzzleLevelStars = stars; }
