@@ -15,15 +15,20 @@ public class SelectPuzzle : MonoBehaviour
    [SerializeField]
    private SelectLevel selectLevel;
 
-   private string _selectPuzzle;
+   [SerializeField]
+   private LevelLocker levelLocker;
+
+   private string _selectedPuzzle;
 
    public void SelectedPuzzle()
    {
-      _selectPuzzle = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
+      _selectedPuzzle = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
 
-      puzzleGameManager.SetSelectedPuzzle(_selectPuzzle);
+      puzzleGameManager.SetSelectedPuzzle(_selectedPuzzle);
 
-      selectLevel.SetSelectPuzzle(_selectPuzzle);
+      levelLocker.CheckWhichLevelsAreUnlocked(_selectedPuzzle);
+
+      selectLevel.SetSelectPuzzle(_selectedPuzzle);
 
       StartCoroutine(ShowPuzzleLevelSeletor());
    }
