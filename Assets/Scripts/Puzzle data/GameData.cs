@@ -1,10 +1,7 @@
-﻿using UnityEngine;
-using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System;
 
 [Serializable]
-public class GameData : MonoBehaviour
+public class GameData
 {
    private bool[] _candyPuzzleLevels;
    private bool[] _transportPuzzleLevels;

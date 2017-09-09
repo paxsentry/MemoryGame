@@ -89,7 +89,7 @@ public class SetupPuzzleGame : MonoBehaviour
             }
             break;
 
-         case "Tranport puzzle":
+         case "Transport puzzle":
             for (int i = 0; i < _looper; i++)
             {
                if (index == _looper / 2) { index = 0; }
@@ -100,7 +100,7 @@ public class SetupPuzzleGame : MonoBehaviour
             }
             break;
 
-         case "Fruits puzzle":
+         case "Fruit puzzle":
             for (int i = 0; i < _looper; i++)
             {
                if (index == _looper / 2) { index = 0; }

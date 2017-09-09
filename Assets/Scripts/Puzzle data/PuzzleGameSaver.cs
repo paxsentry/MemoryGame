@@ -87,7 +87,7 @@ public class PuzzleGameSaver : MonoBehaviour
       }
    }
 
-   void SaveGameData()
+   public void SaveGameData()
    {
       FileStream file = null;
 
@@ -95,7 +95,7 @@ public class PuzzleGameSaver : MonoBehaviour
       {
          BinaryFormatter bf = new BinaryFormatter();
 
-         file = File.Create(Application.persistentDataPath + "gameData.dat");
+         file = File.Create(Application.persistentDataPath + "/gameData.dat");
 
          if (gameData != null)
          {
@@ -177,6 +177,7 @@ public class PuzzleGameSaver : MonoBehaviour
             if (unlockNextLevel < candyPuzzleLevels.Length)
             {
                candyPuzzleLevels[unlockNextLevel] = true;
+               SaveGameData();
             }
             break;
 
@@ -187,6 +188,7 @@ public class PuzzleGameSaver : MonoBehaviour
             if (unlockNextLevel < transportPuzzleLevels.Length)
             {
                transportPuzzleLevels[unlockNextLevel] = true;
+               SaveGameData();
             }
             break;
 
@@ -197,6 +199,7 @@ public class PuzzleGameSaver : MonoBehaviour
             if (unlockNextLevel < fruitPuzzleLevels.Length)
             {
                fruitPuzzleLevels[unlockNextLevel] = true;
+               SaveGameData();
             }
             break;
 
