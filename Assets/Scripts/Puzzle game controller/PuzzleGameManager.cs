@@ -9,6 +9,9 @@ public class PuzzleGameManager : MonoBehaviour
    private GameFinished gameFinished;
 
    [SerializeField]
+   private PuzzleGameSaver puzzleGameSaver;
+
+   [SerializeField]
    private List<Sprite> _gamePuzzles = new List<Sprite>();
 
    private List<Button> _puzzleButtons = new List<Button>();
@@ -130,16 +133,18 @@ public class PuzzleGameManager : MonoBehaviour
       if (_countGuesses < howManyGuesses)
       {
          gameFinished.ShowGameFinishedPanel(3);
+         puzzleGameSaver.Save(_level, _selectedPuzzle, 3);
       }
       else if (_countGuesses < (howManyGuesses + 5))
       {
          gameFinished.ShowGameFinishedPanel(2);
+         puzzleGameSaver.Save(_level, _selectedPuzzle, 2);
       }
-      else 
+      else
       {
          gameFinished.ShowGameFinishedPanel(1);
+         puzzleGameSaver.Save(_level, _selectedPuzzle, 1);
       }
-
    }
 
    void AddListener()

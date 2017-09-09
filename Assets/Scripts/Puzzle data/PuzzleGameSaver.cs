@@ -115,7 +115,7 @@ public class PuzzleGameSaver : MonoBehaviour
       }
       catch (Exception e)
       {
-         throw;
+         // throw;
       }
       finally
       {
@@ -153,7 +153,7 @@ public class PuzzleGameSaver : MonoBehaviour
       }
       catch (Exception e)
       {
-        // throw;
+         // throw;
       }
       finally
       {
@@ -170,8 +170,8 @@ public class PuzzleGameSaver : MonoBehaviour
 
       switch (selectedPuzzle)
       {
-         case "Candy Puzzle":
-            unlockNextLevel = level++;
+         case "Candy puzzle":
+            unlockNextLevel = level + 1;
             candyPuzzleLevelStars[level] = stars;
 
             if (unlockNextLevel < candyPuzzleLevels.Length)
@@ -180,8 +180,8 @@ public class PuzzleGameSaver : MonoBehaviour
             }
             break;
 
-         case "Transport Puzzle":
-            unlockNextLevel = level++;
+         case "Transport puzzle":
+            unlockNextLevel = level + 1;
             transportPuzzleLevelStars[level] = stars;
 
             if (unlockNextLevel < transportPuzzleLevels.Length)
@@ -190,8 +190,8 @@ public class PuzzleGameSaver : MonoBehaviour
             }
             break;
 
-         case "Fruit Puzzle":
-            unlockNextLevel = level++;
+         case "Fruit puzzle":
+            unlockNextLevel = level + 1;
             fruitPuzzleLevelStars[level] = stars;
 
             if (unlockNextLevel < fruitPuzzleLevels.Length)
